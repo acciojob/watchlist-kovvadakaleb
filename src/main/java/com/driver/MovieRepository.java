@@ -16,16 +16,16 @@ public class MovieRepository {
     HashMap<String,Director> directorMap = new HashMap<>();
     HashMap<String, List<String>> movieDirectorMap = new HashMap<>();
     public ResponseEntity<String> addMovie(Movie movie) {
-      if(!movieMap.containsKey(movie.getName())){
+
           movieMap.put(movie.getName(),movie);
-      }
+
       return new ResponseEntity<>("Movie Added Successfully", HttpStatus.OK);
     }
 
     public ResponseEntity<String> addDirector(Director director) {
-       if(!directorMap.containsKey(director.getName())){
+
            directorMap.put(director.getName(),director);
-       }
+
        return new ResponseEntity<>("Director Added Successfully",HttpStatus.OK);
     }
 
@@ -42,32 +42,20 @@ public class MovieRepository {
     }
 
     public ResponseEntity<Movie> getMovieByName(String movieName) {
-       if(movieMap.containsKey(movieName)){
 
-           return  ResponseEntity.ok(movieMap.get(movieName));
-       }
-       else{
-           return ResponseEntity.notFound().build();
-       }
+        return  ResponseEntity.ok(movieMap.get(movieName));
     }
 
     public ResponseEntity<Director> getDirectorByName(String directorName) {
-       if(directorMap.containsKey(directorName)){
+
            return ResponseEntity.ok(directorMap.get(directorName));
        }
-       else{
-           return ResponseEntity.notFound().build();
-       }
-    }
 
-    public ResponseEntity<List<String>> getMoviesByDirectorName(String directorName) {
-     if(movieDirectorMap.containsKey(directorName)){
+       public ResponseEntity<List<String>> getMoviesByDirectorName(String directorName) {
+
          return ResponseEntity.ok(movieDirectorMap.get(directorName));
      }
-     else{
-         return ResponseEntity.notFound().build();
-     }
-    }
+
 
     public ResponseEntity<List<String>> findAllMovies() {
         List<String> movielist = new ArrayList<>();
